@@ -1,0 +1,128 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('./icomoon.eot?326pd8');
+  src: url('./icomoon.eot?326pd8#iefix') format('embedded-opentype'), url('./icomoon.ttf?326pd8') format('truetype'),
+    url('./icomoon.woff?326pd8') format('woff'), url('./icomoon.svg?326pd8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class*='pl-icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pl-icon-delete:before {
+  content: '\e921';
+}
+.pl-icon-search:before {
+  content: '\e920';
+}
+.pl-icon-checked:before {
+  content: '\e91c';
+}
+.pl-icon-ellipsis:before {
+  content: '\e91e';
+}
+.pl-icon-grid:before {
+  content: '\e900';
+}
+.pl-icon-item:before {
+  content: '\e901';
+}
+.pl-icon-mute:before {
+  content: '\e902';
+}
+.pl-icon-play-next:before {
+  content: '\e903';
+}
+.pl-icon-pause:before {
+  content: '\e904';
+}
+.pl-icon-play:before {
+  content: '\e905';
+}
+.pl-icon-to-play:before {
+  content: '\e906';
+}
+.pl-icon-webfull-on:before {
+  content: '\e907';
+}
+.pl-icon-setting:before {
+  content: '\e908';
+}
+.pl-icon-full-screen:before {
+  content: '\e909';
+  color: #fff;
+}
+.pl-icon-wide-on:before {
+  content: '\e90a';
+}
+.pl-icon-webfull-off:before {
+  content: '\e90b';
+}
+.pl-icon-wide-off:before {
+  content: '\e90c';
+}
+.pl-icon-volume:before {
+  content: '\e90d';
+}
+.pl-icon-anime:before {
+  content: '\e91f';
+}
+.pl-icon-danmu-count:before {
+  content: '\e90e';
+}
+.pl-icon-arrow-down:before {
+  content: '\e90f';
+}
+.pl-icon-arrow-left:before {
+  content: '\e910';
+}
+.pl-icon-toggle:before {
+  content: '\e911';
+}
+.pl-icon-play-count:before {
+  content: '\e912';
+}
+.pl-icon-arrow-right:before {
+  content: '\e913';
+}
+.pl-icon-arrow-up:before {
+  content: '\e915';
+}
+.pl-icon-up-zhu:before {
+  content: '\e916';
+}
+.pl-icon-game:before {
+  content: '\e914';
+}
+.pl-icon-history-play:before {
+  content: '\e917';
+}
+.pl-icon-home:before {
+  content: '\e918';
+}
+.pl-icon-movie:before {
+  content: '\e919';
+}
+.pl-icon-later-play:before {
+  content: '\e91a';
+}
+.pl-icon-collection:before {
+  content: '\e91b';
+}
+.pl-icon-subscribe:before {
+  content: '\e91d';
+}
