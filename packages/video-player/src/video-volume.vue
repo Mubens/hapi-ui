@@ -15,12 +15,12 @@
         <div class="pl-video-player__volume--bg">
           <div
             class="pl-video-player__volume--progress"
-            :style="{ height: vol * 100 + '%' }"
+            :style="{ height: vol * 100 + '%', backgroundColor: barColor }"
           ></div>
           <!-- top: (0-80%) -->
           <div
             class="pl-video-player__volume--ball"
-            :style="{ top: (1 - vol) * 80 + '%' }"
+            :style="{ top: (1 - vol) * 80 + '%', backgroundColor: barColor }"
           ></div>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default {
   props: {
     volume: {
       type: Number,
-      default: 1
+      default: 0
     },
     icon: {
       type: String,
@@ -47,6 +47,10 @@ export default {
     color: {
       type: String,
       default: '#fff'
+    },
+    barColor: {
+      type: String,
+      default: '#ff6b6b'
     }
   },
   inject: {

@@ -11,6 +11,9 @@ import VideoTime from '../packages/video-time/index'
 import VideoFullScreen from '../packages/video-full-screen/index'
 import VideoWideScreen from '../packages/video-wide-screen/index'
 
+import './assets/fonts/icomoon.css'
+import './directives/index'
+
 const components = [
   Button,
   IconButton,

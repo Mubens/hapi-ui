@@ -1,14 +1,39 @@
 <template>
-  <button class="pl-icon-button" @click="fullScreen">
-    <i class="pl-icon-full-screen"></i>
+  <button class="pl-icon-button" @click="setScreenMode(2)">
+    <i
+      :class="[isFullScreen ? activeIcon : icon]"
+      :style="{ color: isFullScreen ? activeColor : color }"
+    ></i>
   </button>
 </template>
 
 <script>
 export default {
   name: 'PlVideoFullScreen',
+  props: {
+    icon: {
+      type: String,
+      default: 'pl-icon-full-screen'
+    },
+    activeIcon: {
+      type: String,
+      default: 'pl-icon-full-screen'
+    },
+    color: {
+      type: String,
+      default: '#fff'
+    },
+    activeColor: {
+      type: String,
+      default: '#fff'
+    }
+  },
   inject: {
     getPlayer: {
+      type: Function,
+      default: () => { }
+    },
+    getScreenMode: {
       type: Function,
       default: () => { }
     },
@@ -17,29 +42,32 @@ export default {
       default: () => { }
     }
   },
+  computed: {
+    isFullScreen () {
+      return this.getScreenMode()
+    }
+  },
+  watch: {
+    isFullScreen (flag) {
+      if (flag !== 2) {
+        this.exitFullScreen()
+      } else {
+        this.requestFullScreen()
+      }
+    }
+  },
   methods: {
-    fullScreen () {
-      const isFull = !!(
+    isFull () {
+      return !!(
         document.fullscreen ||
         document.mozFullScreen ||
         document.webkitIsFullScreen ||
         document.webkitFullScreen ||
         document.msFullScreen
       )
-
-      if (isFull) {
-        // console.log('退出全屏')
-        if (document.exitFullscreen) {
-          document.exitFullscreen()
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen()
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen()
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen()
-        }
-      } else {
-        // console.log('全屏')
+    },
+    requestFullScreen () {
+      if (!this.isFull()) {
         const player = this.getPlayer()
         if (player.requestFullscreen) {
           player.requestFullscreen()
@@ -52,9 +80,23 @@ export default {
         }
       }
     },
+    exitFullScreen () {
+      if (this.isFull()) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen()
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen()
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen()
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen()
+        }
+      }
+    },
     fullScreenChange () {
-      // this.$emit('click', 'full-screen')
-      this.setScreenMode(2)
+      if (!this.isFull()) {
+        this.setScreenMode(0)
+      }
     }
   },
   mounted () {
@@ -72,7 +114,4 @@ export default {
 </script>
 
 <style>
-.en-video-player-ctrl-btn.full-screen-btn svg {
-  transform: scale(1.3, 1.3);
-}
 </style>

@@ -1,9 +1,8 @@
 <template>
-  <button class="pl-icon-button" @click="handleClick">
+  <button class="pl-icon-button" @click="setScreenMode(1)">
     <i
       :class="[isWideScreen ? activeIcon : icon]"
-      :style="{ color }"
-      @click="handleClick"
+      :style="{ color: isWideScreen ? activeColor : color }"
     ></i>
   </button>
 </template>
@@ -23,6 +22,10 @@ export default {
     color: {
       type: String,
       default: '#fff'
+    },
+    activeColor: {
+      type: String,
+      default: '#fff'
     }
   },
   inject: {
@@ -40,13 +43,13 @@ export default {
       return this.getScreenMode() === 1
     }
   },
-  methods: {
-    handleClick () {
-      this.setScreenMode(1)
+  watch: {
+    isWideScreen (flag) {
+      document.body.style.overflow = flag ? 'hidden' : ''
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="less">
 </style>

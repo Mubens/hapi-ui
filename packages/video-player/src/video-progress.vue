@@ -7,11 +7,15 @@
     <div class="pl-video-player__progress--body">
       <span
         class="pl-video-player__progress--buffer"
-        :style="{ width: buffer + '%' }"
+        :style="{ width: buffer + '%', backgroundColor: bufferColor }"
       ></span>
       <span
         class="pl-video-player__progress--current"
-        :style="{ width: 100 + '%', transform: `scaleX(${percent / 100})` }"
+        :style="{
+          width: 100 + '%',
+          transform: `scaleX(${percent / 100})`,
+          backgroundColor: color,
+        }"
       ></span>
     </div>
     <slot></slot>
@@ -23,12 +27,19 @@
 export default {
   name: 'PlVideoProgress',
   props: {
-    buffer: { type: Number, default: 0 },
-    current: { type: Number, default: 0 },
     currentTime: {
       type: Number,
       default: 0
-    }
+    },
+    color: {
+      type: String,
+      default: '#ff6b6b'
+    },
+    bufferColor: {
+      type: String,
+      default: '#7c7c7c'
+    },
+
   },
   inject: ['getVideo'],
   data () {
@@ -36,7 +47,8 @@ export default {
       // 拖拽标志位
       dragging: false,
       // 拖拽进度（%）
-      percent: 0
+      percent: 0,
+      buffer: 0
     }
   },
   methods: {

@@ -3,11 +3,19 @@
     class="pl-video-player"
     tabindex="-1"
     @keydown.space.prevent="playOrPause"
+    @keydown.esc="setScreenMode(0)"
     @click="playOrPause"
     @mousemove="mouseMove"
     @mouseleave="mouseLeave"
   >
-    <div class="pl-video-player__body" ref="player">
+    <div
+      class="pl-video-player__body"
+      :class="{
+        'full-web-page': screenMode === 1,
+        'large-size': screenMode === 1 || screenMode === 2,
+      }"
+      ref="player"
+    >
       <video
         class="pl-video-player__video"
         :src="src"
@@ -77,18 +85,16 @@ export default {
       timeShow: false,
       isShow: false,
       timer: null,
-      screenMode: 0,
-      lastMode: 0
+      screenMode: 0
     }
   },
   methods: {
     setScreenMode (state) {
-      // this.screenMode = state
-      if (SCREEN_MODE[this.screenMode] !== SCREEN_MODE[3]) {
-        this.lastMode = state
-      }
-
-      if (SCREEN_MODE[this.screenMode] === SCREEN_MODE[state]) {
+      if (state == null) return
+      // console.log(this.screenMode, state)
+      if (this.screenMode === state) {
+        this.screenMode = 0
+      } else {
         this.screenMode = state
       }
     },
@@ -146,7 +152,7 @@ export default {
 }
 </script>
 
-<style >
+<style lang="less">
 .pl-video-player {
   position: relative;
   width: 100%;
@@ -160,6 +166,33 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: #000;
+
+  &.full-web-page {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &.large-size {
+    .pl-icon-button {
+      font-size: 26px;
+      margin: 0 10px;
+    }
+    .pl-video-controls__buttons {
+      margin: 10px 0;
+    }
+
+    .pl-video-time {
+      height: 26px;
+      line-height: 30px;
+    }
+
+    .pl-video-time__set {
+      height: 28px;
+      width: 82px;
+    }
+  }
 }
 
 .pl-video-player__video {

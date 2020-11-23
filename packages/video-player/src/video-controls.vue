@@ -1,7 +1,7 @@
 <template>
   <div
     class="pl-video-controls"
-    :class="{ 'is-show': isShow, 'large-size': largeSize }"
+    :class="{ 'is-show': isShow }"
     @mouseover="showController"
     @mouseleave="hideController"
     @click.stop
@@ -66,26 +66,6 @@ export default {
 
   &.is-show {
     opacity: 1;
-  }
-}
-
-.pl-video-controls.large-size {
-  .pl-icon-button {
-    font-size: 26px;
-    margin: 0 10px;
-  }
-  .pl-video-controls__buttons {
-    margin: 10px 0;
-  }
-
-  .pl-video-time {
-    height: 26px;
-    line-height: 30px;
-  }
-
-  .pl-video-time__set {
-    height: 28px;
-    width: 82px;
   }
 }
 
